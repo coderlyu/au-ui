@@ -1,0 +1,15 @@
+[
+  {
+    "name": "开发指南",
+    "children": [
+      {
+        "path": "/demo",
+        "name": "Demo"
+      },
+      {
+        "path": "/hello",
+        "name": "Hello"
+      }
+    ]
+  }
+]

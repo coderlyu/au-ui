@@ -1,0 +1,4 @@
+{
+  "demo": "./packages/demo/index.js",
+  "hello": "./packages/hello/index.js"
+}

@@ -2,10 +2,14 @@
 
 import Demo from '../packages/demo/index.js';
 import Hello from '../packages/hello/index.js';
+import Roll from '../packages/roll/index.js';
+import Rank1 from '../packages/rank-1/index.js';
 
 const components = [
   Demo,
-  Hello
+  Hello,
+  Roll,
+  Rank1
 ];
 
 const install = function(Vue, opts = {}) {
@@ -23,5 +27,7 @@ export default {
   version: '1.0.0',
   install,
   Demo,
-  Hello
+  Hello,
+  Roll,
+  Rank1
 };

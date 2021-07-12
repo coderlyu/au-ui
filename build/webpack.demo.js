@@ -11,13 +11,12 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 // const config = require('./config');
 
 const isProd = process.env.NODE_ENV === 'production'
-const isPlay = !!process.env.PLAY_ENV
 
 const webpackConfig = {
   mode: process.env.NODE_ENV,
   entry: isProd ? { docs: './examples/entry.js' } : './examples/entry.js',
   output: {
-    path: path.resolve(process.cwd(), './examples/element-ui/'),
+    path: path.resolve(process.cwd(), './examples/my-ui/'),
     publicPath: '',
     filename: '[name].[hash:7].js',
     chunkFilename: isProd ? '[name].[hash:7].js' : '[name].js'
@@ -133,11 +132,11 @@ const webpackConfig = {
 }
 
 if (isProd) {
-  webpackConfig.externals = {
-    vue: 'Vue',
-    'vue-router': 'VueRouter',
-    'highlight.js': 'hljs'
-  }
+  // webpackConfig.externals = {
+  //   vue: 'Vue',
+  //   'vue-router': 'VueRouter',
+  //   'highlight.js': 'hljs'
+  // }
   webpackConfig.plugins.push(
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash:7].css'
@@ -156,7 +155,7 @@ if (isProd) {
     cacheGroups: {
       vendor: {
         test: /\/src\//,
-        name: 'element-ui',
+        name: 'ailpha-ui',
         chunks: 'all'
       }
     }

@@ -12,7 +12,6 @@ import SideNav from './components/side-nav'
 import FooterNav from './components/footer-nav'
 
 import 'element-ui/lib/theme-chalk/index.css'
-import './demo-styles/index.scss'
 import './assets/styles/common.css'
 import './assets/styles/fonts/style.css'
 
@@ -36,7 +35,7 @@ router.afterEach(route => {
     const blocks = document.querySelectorAll('pre code:not(.hljs)')
     Array.prototype.forEach.call(blocks, hljs.highlightElement)
   })
-  document.title = 'Element'
+  document.title = 'MY-UI'
 })
 
 new Vue({

@@ -1,14 +1,37 @@
 [
   {
-    "name": "开发指南",
-    "children": [
+    "name": "组件",
+    "groups": [
       {
-        "path": "/demo",
-        "name": "Demo"
+        "groupName": "基础",
+        "list": [
+          {
+            "path": "/demo",
+            "title": "Demo"
+          },
+          {
+            "path": "/hello",
+            "title": "Hello"
+          }
+        ]
       },
       {
-        "path": "/hello",
-        "name": "Hello"
+        "groupName": "表格",
+        "list": [
+          {
+            "path": "/roll",
+            "title": "Roll 文字滚动"
+          }
+        ]
+      },
+      {
+        "groupName": "图表",
+        "list": [
+          {
+            "path": "/rank-1",
+            "title": "Rank-1 等级-1"
+          }
+        ]
       }
     ]
   }

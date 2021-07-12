@@ -57,7 +57,7 @@ route.push({
 
 route = route.concat([{
   path: '*',
-  redirect: '/component/hello'
+  redirect: '/component/roll'
 }])
 
 export default route

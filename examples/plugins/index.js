@@ -1,10 +1,11 @@
-import { Tooltip, Button, Scrollbar, Backtop } from 'element-ui'
+import { Tooltip, Button, Scrollbar, Backtop, Icon } from 'element-ui'
 
 const components = [
   Tooltip,
   Button,
   Scrollbar,
-  Backtop
+  Backtop,
+  Icon
 ]
 export default {
   install(Vue) {

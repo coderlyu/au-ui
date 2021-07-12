@@ -1,7 +1,7 @@
 <style>
 .page-component__scroll {
-  height: calc(100% - 80px);
-  margin-top: 80px;
+  height: calc(100% - 60px);
+  margin-top: 60px;
 
   > .el-scrollbar__wrap {
     overflow-x: auto;
@@ -13,7 +13,7 @@
   height: 100%;
 
   &.page-container {
-    padding: 0;
+    padding: 0 32px 0 48px;
   }
 
   .page-component__nav {
@@ -21,7 +21,7 @@
     position: fixed;
     top: 0;
     bottom: 0;
-    margin-top: 80px;
+    margin-top: 60px;
     transition: padding-top 0.3s;
 
     > .el-scrollbar__wrap {
@@ -138,7 +138,6 @@
         <side-nav :data="navsData" :base="`/component`"></side-nav>
       </el-scrollbar>
       <div class="page-component__content">
-        <i class="el-icon-edit"></i>
         <router-view class="content"></router-view>
         <!-- <footer-nav></footer-nav> -->
       </div>

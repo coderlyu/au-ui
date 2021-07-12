@@ -21,23 +21,11 @@
       :class="{ 'is-fixed': fixedControl }"
       @click="isExpanded = !isExpanded">
       <transition name="arrow-slide">
-        <i :class="[iconClass, { 'hovering': hovering }]"></i>
+        <img :src="iconClass" :class="[{ 'hovering': hovering }, 'arrow-slide-icon']" alt="图标">
       </transition>
       <transition name="text-slide">
         <span v-show="hovering">{{ controlText }}</span>
       </transition>
-      <el-tooltip effect="dark" content="前往 codepen.io 运行此示例" placement="right">
-        <transition name="text-slide">
-          <el-button
-            v-show="hovering || isExpanded"
-            size="small"
-            type="text"
-            class="control-button"
-            @click.stop="goCodepen">
-            在线运行
-          </el-button>
-        </transition>
-      </el-tooltip>
     </div>
   </div>
 </template>
@@ -47,7 +35,7 @@
     border: solid 1px #ebebeb;
     border-radius: 3px;
     transition: .2s;
-
+    margin: 8px 0;
     &.hover {
       box-shadow: 0 0 8px 0 rgba(232, 237, 250, .6), 0 2px 4px 0 rgba(232, 237, 250, .5);
     }
@@ -138,9 +126,10 @@
         width: 868px;
       }
 
-      i {
-        font-size: 16px;
-        line-height: 44px;
+      .arrow-slide-icon {
+        width: 30px;
+        height: 30px;
+        margin-top: 7px;
         transition: .3s;
         &.hovering {
           transform: translateX(-40px);
@@ -196,7 +185,9 @@ export default {
       hovering: false,
       isExpanded: false,
       fixedControl: false,
-      scrollParent: null
+      scrollParent: null,
+      arrowUp: require('../assets/images/arrow-up.png').default,
+      arrowDown: require('../assets/images/arrow-down.png').default
     }
   },
 
@@ -256,7 +247,8 @@ export default {
     },
 
     iconClass () {
-      return this.isExpanded ? 'el-icon-caret-top' : 'el-icon-caret-bottom'
+      // return this.isExpanded ? 'el-icon-caret-top' : 'el-icon-caret-bottom'
+      return this.isExpanded ? this.arrowUp : this.arrowDown
     },
 
     controlText () {

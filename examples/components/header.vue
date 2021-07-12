@@ -1,6 +1,6 @@
 <style lang="scss" scoped>
 .headerWrapper {
-  height: 80px;
+  height: 60px;
 }
 
 #v3-banner {
@@ -19,13 +19,13 @@
 }
 
 .header {
-  height: 80px;
+  height: 60px;
   background-color: #fff;
   color: #fff;
   top: 0;
   left: 0;
   width: 100%;
-  line-height: 80px;
+  line-height: 60px;
   z-index: 100;
   position: relative;
 
@@ -43,6 +43,7 @@
     margin: 0;
     float: left;
     font-size: 32px;
+    padding-left: 32px;
     font-weight: normal;
 
     a {
@@ -68,10 +69,11 @@
   .nav {
     float: right;
     height: 100%;
-    line-height: 80px;
+    line-height: 60px;
     background: transparent;
     padding: 0;
     margin: 0;
+    padding-right: 32px;
     &::before,
     &::after {
       display: table;
@@ -85,7 +87,7 @@
   .nav-gap {
     position: relative;
     width: 1px;
-    height: 80px;
+    height: 60px;
     padding: 0 20px;
 
     &::before {
@@ -289,7 +291,7 @@
     <header class="header" ref="header">
       <div class="container">
         <h1>
-          <router-link :to="`/home`">
+          <router-link to="/home">
             <!-- logo -->
             <slot>
               组件库
@@ -308,12 +310,12 @@
         <!-- nav -->
         <ul class="nav">
           <li class="nav-item">
-            <router-link active-class="active" :to="`/guide`"
+            <router-link active-class="active" to="/guide"
               >指南
             </router-link>
           </li>
           <li class="nav-item">
-            <router-link active-class="active" :to="`/component`"
+            <router-link active-class="active" to="/component"
               >组件
             </router-link>
           </li>

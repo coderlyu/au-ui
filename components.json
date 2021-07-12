@@ -1,4 +1,6 @@
 {
   "demo": "./packages/demo/index.js",
-  "hello": "./packages/hello/index.js"
+  "hello": "./packages/hello/index.js",
+  "roll": "./packages/roll/index.js",
+  "rank-1": "./packages/rank-1/index.js"
 }

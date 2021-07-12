@@ -1,5 +1,7 @@
 # 说明
 
+大屏可视化组件库
+
 ## 使用
 
 ## 开发
@@ -13,17 +15,27 @@
 
 ### 文档书写
 
-例如：demo 组件
+1. 需要放入展示的代码块，必须使用 `:::demo` 开头，并且以 `:::`结尾。
+2. 添加表格 以 `|` 分隔，如下
 
-:::demo Alert 组件提供四种主题，由`type`属性指定，默认值为`info`。
+| 参数      | 说明          | 类型      | 可选值                           | 默认值  |
+|---------- |-------------- |---------- |--------------------------------  |-------- |
+| html     | 显示的文字，绑定html属性，可与message连用 | string | — | — |
+| propStyle | 内容文字的样式 | string/Object | — | — |
+| message | 显示的文字，普通内容，可与html连用 | string | — | — |
+| speed | 单次滚动用时，单位为秒 | number | — | 4 |
+| timingFunction | 动画的速度曲线，默认匀速 | string | — | linear |
+| interval | 是否滚动结束时停留一段时间 | boolean | true/false | true |
+
+
+**插入展示效果的代码块**
+
+例如：Roll 组件
+
+:::demo Roll 组件提供。
 ```html
 <template>
-  <demo>
-    你好啊
-  </demo>
-  <demo>
-    我是xxx
-  </demo>
+  <roll message="这是很长的一段文字" />
 </template>
 ```
 :::

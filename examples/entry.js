@@ -33,7 +33,7 @@ const router = new VueRouter({
 router.afterEach(route => {
   Vue.nextTick(() => {
     const blocks = document.querySelectorAll('pre code:not(.hljs)')
-    Array.prototype.forEach.call(blocks, hljs.highlightElement)
+    Array.prototype.forEach.call(blocks, hljs.highlightBlock)
   })
   document.title = 'MY-UI'
 })

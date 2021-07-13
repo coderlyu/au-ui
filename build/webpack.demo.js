@@ -132,11 +132,11 @@ const webpackConfig = {
 }
 
 if (isProd) {
-  webpackConfig.externals = {
-    vue: 'Vue',
-    'vue-router': 'VueRouter',
-    'highlight.js': 'hljs'
-  }
+  // webpackConfig.externals = {
+  //   vue: 'Vue',
+  //   'vue-router': 'VueRouter',
+  //   'highlight.js': 'hljs'
+  // }
   webpackConfig.plugins.push(
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash:7].css'

@@ -8,7 +8,7 @@ const registerRoute = (navConfig) => {
   const route = []
   route.push({
     path: '/component',
-    redirect: '/component/installation',
+    redirect: '/component/roll',
     component: () => import('./pages/component.vue'),
     children: []
   })
@@ -50,14 +50,15 @@ const registerRoute = (navConfig) => {
 let route = registerRoute(navConfig)
 
 route.push({
-  path: '/play',
-  name: 'play',
-  component: require('./play/index.vue')
+  path: '/home',
+  name: 'home',
+  component: () => import('./pages/index.vue')
 })
 
 route = route.concat([{
   path: '*',
   redirect: '/component/roll'
+  // redirect: '/home'
 }])
 
 export default route

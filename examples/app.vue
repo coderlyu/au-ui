@@ -4,7 +4,6 @@
     <div class="main-cnt">
       <router-view></router-view>
     </div>
-    <main-footer v-if="!isComponent"></main-footer>
   </div>
 </template>
 

@@ -16,7 +16,7 @@ const webpackConfig = {
   mode: process.env.NODE_ENV,
   entry: isProd ? { docs: './examples/entry.js' } : './examples/entry.js',
   output: {
-    path: path.resolve(process.cwd(), './examples/my-ui/'),
+    path: path.resolve(process.cwd(), './examples/au-ui/'),
     publicPath: '',
     filename: '[name].[hash:7].js',
     chunkFilename: isProd ? '[name].[hash:7].js' : '[name].js'

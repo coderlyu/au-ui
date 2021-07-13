@@ -1,8 +1,8 @@
-import ElHello from './src/index.vue'
+import AuHello from './src/index.vue'
 
 /* istanbul ignore next */
-ElHello.install = function (Vue) {
-  Vue.component(ElHello.name, ElHello)
+AuHello.install = function (Vue) {
+  Vue.component(AuHello.name, AuHello)
 }
 
-export default ElHello
+export default AuHello

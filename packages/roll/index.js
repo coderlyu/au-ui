@@ -1,8 +1,8 @@
-import AlRoll from './src/index.vue'
+import AuRoll from './src/index.vue'
 
 /* istanbul ignore next */
-AlRoll.install = function (Vue) {
-  Vue.component(AlRoll.name, AlRoll)
+AuRoll.install = function (Vue) {
+  Vue.component(AuRoll.name, AuRoll)
 }
 
-export default AlRoll
+export default AuRoll

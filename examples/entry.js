@@ -11,9 +11,8 @@ import MainHeader from './components/header'
 import SideNav from './components/side-nav'
 import FooterNav from './components/footer-nav'
 
-import 'element-ui/lib/theme-chalk/index.css'
 import './assets/styles/common.css'
-import './assets/styles/fonts/style.css'
+import 'element-ui/lib/theme-chalk/index.css'
 
 Vue.use(ElementUI)
 Vue.use(Element)
@@ -35,10 +34,11 @@ router.afterEach(route => {
     const blocks = document.querySelectorAll('pre code:not(.hljs)')
     Array.prototype.forEach.call(blocks, hljs.highlightBlock)
   })
-  document.title = 'MY-UI'
+  document.title = 'AU-UI'
 })
 
 new Vue({
-  render: h => h(entry),
+  // render: h => h(entry),
+  ...entry,
   router
 }).$mount('#app')

@@ -129,11 +129,11 @@ export default {
             inverse: true,
             axisLabel: {
               interval: 0,
-              color: ['#fff'],
+              color: ['#000'],
               align: 'left',
               verticalAlign: 'bottom',
               lineHeight: 32,
-              fontSize: 10
+              fontSize: 14
             },
             data: []
           }

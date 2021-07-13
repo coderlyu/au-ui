@@ -106,6 +106,11 @@
   }
 }
 
+.back-top {
+  width: 25px;
+  height: 30px;
+}
+
 @media (max-width: 768px) {
   .page-component {
     .page-component__nav {
@@ -139,14 +144,15 @@
       </el-scrollbar>
       <div class="page-component__content">
         <router-view class="content"></router-view>
-        <!-- <footer-nav></footer-nav> -->
       </div>
       <el-backtop
         v-if="showBackToTop"
         target=".page-component__scroll .el-scrollbar__wrap"
-        :right="100"
-        :bottom="150"
-      ></el-backtop>
+        :right="50"
+        :bottom="40"
+      >
+        <img class="back-top" :src="iconUrl" alt="返回顶部">
+      </el-backtop>
     </div>
   </el-scrollbar>
 </template>
@@ -162,7 +168,8 @@ export default {
       scrollTop: 0,
       showHeader: true,
       componentScrollBar: null,
-      componentScrollBoxElement: null
+      componentScrollBoxElement: null,
+      iconUrl: require('../assets/images/arrow-up.png').default
     }
   },
   watch: {

@@ -2,8 +2,6 @@ const path = require('path')
 const ProgressBarPlugin = require('progress-bar-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
-const config = require('./config')
-
 module.exports = {
   mode: 'production',
   entry: {
@@ -20,10 +18,13 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', '.vue', '.json'],
-    alias: config.alias,
+    alias: {
+      main: path.resolve(__dirname, '../src'),
+      packages: path.resolve(__dirname, '../packages'),
+      examples: path.resolve(__dirname, '../examples')
+    },
     modules: ['node_modules']
   },
-  externals: config.externals,
   performance: {
     hints: false
   },
@@ -38,7 +39,7 @@ module.exports = {
       {
         test: /\.(jsx?|babel|es6)$/,
         include: process.cwd(),
-        exclude: config.jsexclude,
+        exclude: /node_modules|utils\/popper\.js|utils\/date\.js/,
         loader: 'babel-loader'
       },
       {

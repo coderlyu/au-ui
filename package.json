@@ -1,13 +1,13 @@
 {
   "name": "au-ui",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
   "main": "./src/index.js",
   "scripts": {
-    "build:file": "node build/bin/build-entry.js",
     "dev": "npm run build:file && cross-env NODE_ENV=development webpack-dev-server --config build/webpack.demo.js & node build/bin/template.js",
     "dev:f": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack.demo.js",
-    "deploy:build": "npm run build:file && cross-env NODE_ENV=production webpack --config build/webpack.demo.js",
+    "build:file": "node build/bin/build-entry.js",
+    "build:docs": "npm run build:file && cross-env NODE_ENV=production webpack --config build/webpack.demo.js",
     "lint": "eslint src/**/* packages/**/* build/**/* --quiet",
     "lint:fix": "eslint src/**/*.js packages/**/*.vue packages/**/*.js examples/**/*.js examples/**/*.vue build/**/*.js --fix"
   },

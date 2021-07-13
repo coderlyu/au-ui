@@ -291,29 +291,14 @@
     <header class="header" ref="header">
       <div class="container">
         <h1>
-          <router-link to="/home">
-            <!-- logo -->
+          <router-link to="/">
             <slot>
               组件库
-              <!-- <img
-              src="../assets/images/element-logo.svg"
-              alt="element-logo"
-              class="nav-logo">
-            <img
-              src="../assets/images/element-logo-small.svg"
-              alt="element-logo"
-              class="nav-logo-small"> -->
             </slot>
           </router-link>
         </h1>
-
         <!-- nav -->
         <ul class="nav">
-          <li class="nav-item">
-            <router-link active-class="active" to="/guide"
-              >指南
-            </router-link>
-          </li>
           <li class="nav-item">
             <router-link active-class="active" to="/component"
               >组件

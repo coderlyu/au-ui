@@ -27,9 +27,9 @@
 ```
 :::
 
-## 设置事件
+## 设置点击事件
 
-绑定 click 事件，点击柱子触发，回调参数 和 直接绑定 在 echarts 图标上的参数一致
+绑定 click 事件，点击柱子触发，回调参数 和 直接绑定 在 echarts 图表上的参数一致
 
 :::demo 
 ```html
@@ -52,6 +52,7 @@
     methods: {
       handleClick(params) {
         console.log(params)
+        alert(`你点击了：${params.seriesName}`)
       }
     }
   }

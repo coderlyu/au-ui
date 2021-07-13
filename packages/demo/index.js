@@ -1,8 +1,8 @@
-import Demo from './src/index.vue'
+import AuDemo from './src/index.vue'
 
 /* istanbul ignore next */
-Demo.install = function (Vue) {
-  Vue.component(Demo.name, Demo)
+AuDemo.install = function (Vue) {
+  Vue.component(AuDemo.name, AuDemo)
 }
 
-export default Demo
+export default AuDemo

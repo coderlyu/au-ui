@@ -6,7 +6,7 @@
 ```html
 <template>
   <hello>
-    你好啊
+    这是slot内容
   </hello>
   <hello>
     我是xxx

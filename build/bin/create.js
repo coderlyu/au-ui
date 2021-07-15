@@ -117,6 +117,8 @@ export default {
   write(path.join(__dirname, '../../packages', targetDir, 'src/index.vue'), vueTemplate) // 写入 index.vue
   write(path.join(__dirname, '../../examples/docs', `${targetDir}.md`), mdTemplate) // 写入 markdown 文件
   write(path.join(__dirname, '../../examples/nav.config.json'), JSON.stringify(jsonFile)) // 写入 nav.config.json
+
+  console.log(`\n${targetDir} 组件以及文档初始化成功\n`)
 }
 
 function write (src, content) {

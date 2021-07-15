@@ -77,6 +77,14 @@ const webpackConfig = {
         ]
       },
       {
+        test: /\.(less)$/,
+        use: [
+          isProd ? MiniCssExtractPlugin.loader : 'style-loader',
+          'css-loader',
+          'less-loader'
+        ]
+      },
+      {
         test: /\.md$/,
         use: [
           {

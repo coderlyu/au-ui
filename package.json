@@ -29,6 +29,7 @@
     "babel-plugin-transform-vue-jsx": "^3.7.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-stage-2": "^6.24.1",
+    "chalk": "^4.1.1",
     "chokidar": "^3.5.2",
     "copy-webpack-plugin": "^9.0.1",
     "cross-env": "^7.0.3",
@@ -83,5 +84,14 @@
     "echarts": "^5.1.2",
     "element-ui": "^2.15.0",
     "throttle-debounce": "^1.0.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "*.{js,vue}": "eslint --fix"
   }
 }

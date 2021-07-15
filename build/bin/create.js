@@ -1,5 +1,6 @@
 const fs = require('fs')
 const path = require('path')
+const chalk = require('chalk')
 const argv = require('minimist')(process.argv.slice(2))
 const { prompt } = require('enquirer')
 const {
@@ -48,7 +49,7 @@ async function init () {
       }
     }
   }
-  console.log(`\n正在创建项目 ${root} ...`)
+  console.log(`\n正在创建项目 ${chalk.red(root)} ...`)
   const nav = fs.readFileSync(path.resolve(__dirname, '../../examples/nav.config.json'))
   const jsonFile = JSON.parse(nav.toString())
   const result = []
@@ -118,7 +119,7 @@ export default {
   write(path.join(__dirname, '../../examples/docs', `${targetDir}.md`), mdTemplate) // 写入 markdown 文件
   write(path.join(__dirname, '../../examples/nav.config.json'), JSON.stringify(jsonFile)) // 写入 nav.config.json
 
-  console.log(`\n${targetDir} 组件以及文档初始化成功\n`)
+  console.log(`\n${chalk.bgMagenta(`${chalk.underline(targetDir)} 组件以及文档初始化成功)`)}\n`)
 }
 
 function write (src, content) {

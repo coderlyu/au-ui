@@ -5,7 +5,7 @@
   "main": "./src/index.js",
   "scripts": {
     "create": "node ./build/bin/create.js",
-    "dev": "npm run build:file && cross-env NODE_ENV=development webpack-dev-server --config build/webpack.demo.js & node build/bin/template.js",
+    "dev": "npm run build:file && cross-env NODE_ENV=development node ./build/server.js & node build/bin/template.js",
     "dev:f": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack.demo.js",
     "build:file": "node build/bin/build-entry.js",
     "build:docs": "npm run build:file && cross-env NODE_ENV=production webpack --config build/webpack.demo.js",
@@ -67,6 +67,7 @@
     "minimist": "^1.2.5",
     "node-sass": "^4.11.0",
     "optimize-css-assets-webpack-plugin": "^6.0.1",
+    "portfinder": "^1.0.28",
     "postcss": "^8.3.5",
     "progress-bar-webpack-plugin": "^2.1.0",
     "sass-loader": "^7.1.0",
@@ -86,6 +87,8 @@
     "webpack-node-externals": "^3.0.0"
   },
   "dependencies": {
+    "qs": "^6.10.1",
+    "axios": "^0.21.1",
     "echarts": "^5.1.2",
     "element-ui": "^2.15.0",
     "throttle-debounce": "^1.0.1"

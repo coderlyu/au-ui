@@ -30,12 +30,6 @@ const webpackConfig = {
     },
     modules: ['node_modules']
   },
-  devServer: {
-    host: '127.0.0.1',
-    port: 8085,
-    publicPath: '/',
-    hot: true
-  },
   performance: {
     hints: false
   },

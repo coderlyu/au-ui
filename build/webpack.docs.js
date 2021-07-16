@@ -1,7 +1,6 @@
 const path = require('path')
 const webpack = require('webpack')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-// const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ProgressBarPlugin = require('progress-bar-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
@@ -111,13 +110,11 @@ const webpackConfig = {
       template: './examples/index.tpl',
       filename: './index.html'
     }),
-    // new CopyWebpackPlugin([
-    //   { from: 'examples/versions.json' }
-    // ]),
     new ProgressBarPlugin(),
     new VueLoaderPlugin(),
     new webpack.DefinePlugin({
-      'process.env.FAAS_ENV': JSON.stringify(process.env.FAAS_ENV)
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+      'process.env.BASE_PORT': JSON.stringify(process.env.BASE_PORT)
     }),
     new webpack.LoaderOptionsPlugin({
       vue: {
@@ -157,7 +154,7 @@ if (isProd) {
     cacheGroups: {
       vendor: {
         test: /\/src\//,
-        name: 'ailpha-ui',
+        name: 'au-ui',
         chunks: 'all'
       }
     }

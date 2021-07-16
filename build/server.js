@@ -18,6 +18,7 @@ portfinder.getPort({ port: options.port }, (err, port) => {
     return
   }
   options.port = port
+  process.env.BASE_PORT = port
   WebpackDevServer.addDevServerEntrypoints(config, options)
   const compiler = webpack(config)
   const server = new WebpackDevServer(compiler, options)

@@ -138,6 +138,7 @@
 </style>
 <template>
   <el-scrollbar class="page-component__scroll" ref="componentScrollBar">
+    <el-button @click="() => getCompCategories()">点击</el-button>
     <div class="page-container page-component">
       <el-scrollbar class="page-component__nav">
         <side-nav :data="navsData" :base="`/component`"></side-nav>
@@ -160,6 +161,7 @@
 import bus from '../bus'
 import navsData from '../nav.config.json'
 import throttle from 'throttle-debounce/throttle'
+import { getCompCategories } from '../api/index'
 
 export default {
   data () {
@@ -169,6 +171,7 @@ export default {
       showHeader: true,
       componentScrollBar: null,
       componentScrollBoxElement: null,
+      getCompCategories,
       iconUrl: require('../assets/images/arrow-up.png').default
     }
   },
@@ -226,6 +229,7 @@ export default {
     }
   },
   created () {
+    console.log('合理lode', process, process.env)
     bus.$on('navFade', val => {
       this.navFaded = val
     })

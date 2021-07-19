@@ -10,7 +10,6 @@ function putCompCategories(req, res) {
 }
 
 module.exports = function App(app, server, compiler) {
-  console.log('合适的发生都覅是的')
   app.get('/local/comp/category', getCompCategories)
   app.put('/local/comp/category', putCompCategories)
 }

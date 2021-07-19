@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ProgressBarPlugin = require('progress-bar-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const CssMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 // const config = require('./config');
@@ -15,10 +15,10 @@ const webpackConfig = {
   mode: process.env.NODE_ENV,
   entry: isProd ? { docs: './examples/entry.js' } : './examples/entry.js',
   output: {
-    path: path.resolve(process.cwd(), './examples/au-ui/'),
+    path: path.resolve(process.cwd(), 'dist'),
     publicPath: '',
-    filename: '[name].[hash:7].js',
-    chunkFilename: isProd ? '[name].[hash:7].js' : '[name].js'
+    filename: '[name].[fullhash:7].js',
+    chunkFilename: isProd ? '[name].[fullhash:7].js' : '[name].js'
   },
   resolve: {
     extensions: ['.js', '.vue', '.json'],
@@ -26,6 +26,7 @@ const webpackConfig = {
       main: path.resolve(__dirname, '../src'),
       packages: path.resolve(__dirname, '../packages'),
       examples: path.resolve(__dirname, '../examples')
+      // process: 'process/browser'
     },
     modules: ['node_modules']
   },
@@ -49,17 +50,28 @@ const webpackConfig = {
       {
         test: /\.(jsx?|babel|es6)$/,
         include: process.cwd(),
-        exclude: /node_modules|utils\/popper\.js|utils\/date\.js/,
-        loader: 'babel-loader'
+        exclude: ['/node_modules/', '/.husky/'],
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              cacheDirectory: true
+            }
+          }
+        ]
       },
       {
         test: /\.vue$/,
-        loader: 'vue-loader',
-        options: {
-          compilerOptions: {
-            preserveWhitespace: false
+        use: [
+          {
+            loader: 'vue-loader',
+            options: {
+              compilerOptions: {
+                preserveWhitespace: false
+              }
+            }
           }
-        }
+        ]
       },
       {
         test: /\.(css|scss)$/,
@@ -96,8 +108,7 @@ const webpackConfig = {
       {
         test: /\.(svg|otf|ttf|woff2?|eot|gif|png|jpe?g)(\?\S*)?$/,
         loader: 'url-loader',
-        // todo: 这种写法有待调整
-        query: {
+        options: {
           limit: 10000,
           name: path.posix.join('static', '[name].[hash:7].[ext]')
         }
@@ -112,10 +123,14 @@ const webpackConfig = {
     }),
     new ProgressBarPlugin(),
     new VueLoaderPlugin(),
+    new webpack.ProvidePlugin({
+      process: 'process/browser'
+    }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
       'process.env.BASE_PORT': JSON.stringify(process.env.BASE_PORT)
     }),
+    // new webpack.EnvironmentPlugin(['NODE_ENV', 'BASE_PORT']),
     new webpack.LoaderOptionsPlugin({
       vue: {
         compilerOptions: {
@@ -127,7 +142,7 @@ const webpackConfig = {
   optimization: {
     minimizer: []
   },
-  devtool: '#eval-source-map'
+  devtool: 'source-map'
 }
 
 if (isProd) {
@@ -138,7 +153,7 @@ if (isProd) {
   // }
   webpackConfig.plugins.push(
     new MiniCssExtractPlugin({
-      filename: '[name].[contenthash:7].css'
+      filename: '[name].[fullhash:7].css'
     })
   )
   webpackConfig.optimization.minimizer.push(
@@ -147,7 +162,7 @@ if (isProd) {
       parallel: true,
       sourceMap: false
     }),
-    new OptimizeCSSAssetsPlugin({})
+    new CssMinimizerWebpackPlugin()
   )
   // https://webpack.js.org/configuration/optimization/#optimizationsplitchunks
   webpackConfig.optimization.splitChunks = {

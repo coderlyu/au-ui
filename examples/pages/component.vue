@@ -138,7 +138,7 @@
 </style>
 <template>
   <el-scrollbar class="page-component__scroll" ref="componentScrollBar">
-    <el-button @click="() => getCompCategories()">点击</el-button>
+    <el-button class="less-test" @click="() => getCompCategories()">点击</el-button>
     <div class="page-container page-component">
       <el-scrollbar class="page-component__nav">
         <side-nav :data="navsData" :base="`/component`"></side-nav>
@@ -265,3 +265,8 @@ export default {
   }
 }
 </script>
+<style lang="less" scoped>
+.less-test {
+  width: 100%;
+}
+</style>

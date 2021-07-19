@@ -12,9 +12,9 @@ config
   .plugin('anchor').use(anchorPlugin, [
     {
       level: 2,
-      slugify: slugify,
-      permalink: true,
-      permalinkBefore: true
+      slugify: slugify
+      // permalink: true,
+      // permalinkBefore: true
     }
   ]).end()
 

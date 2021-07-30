@@ -50,7 +50,7 @@ const webpackConfig = {
       {
         test: /\.(jsx?|babel|es6)$/,
         include: process.cwd(),
-        exclude: ['/node_modules/', '/.husky/'],
+        exclude: [/node_modules/, /.husky/],
         use: [
           {
             loader: 'babel-loader',

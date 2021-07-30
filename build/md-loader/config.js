@@ -13,8 +13,6 @@ config
     {
       level: 2,
       slugify: slugify
-      // permalink: true,
-      // permalinkBefore: true
     }
   ]).end()
 

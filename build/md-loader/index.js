@@ -20,6 +20,7 @@ module.exports = function (source) {
 
   let commentStart = content.indexOf(startTag)
   let commentEnd = content.indexOf(endTag, commentStart + startTagLen)
+  console.log(`\n\n${content}\n\n\n`)
   while (commentStart !== -1 && commentEnd !== -1) {
     output.push(content.slice(start, commentStart))
 
@@ -30,6 +31,7 @@ module.exports = function (source) {
     const demoComponentName = `au-demo${id}`
     output.push(`<template slot="source"><${demoComponentName} /></template>`)
     componenetsString += `${JSON.stringify(demoComponentName)}: ${demoComponentContent},`
+    console.log(`${componenetsString}\n\n`)
 
     // 重新计算下一次的位置
     id++

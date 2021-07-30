@@ -7,11 +7,16 @@
 ```html
 <template>
   <demo title="我是自定义title">
-    你好啊
+    <span class="test-color">你好啊</span>
   </demo>
   <demo>
     我是xxx
   </demo>
 </template>
+<style>
+  .test-color {
+    background: #ff0;
+  }
+</style>
 ```
 :::

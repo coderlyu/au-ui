@@ -14,9 +14,9 @@ const webpackConfig = {
     publicPath: '',
     filename: 'bundle.js'
   },
-  externals: {
-    echarts: 'echarts'
-  },
+  // externals: {
+  //   echarts: 'echarts'
+  // },
   resolve: {
     extensions: ['.js', '.vue', '.json'],
     alias: {

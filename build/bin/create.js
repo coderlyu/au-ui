@@ -11,6 +11,8 @@ const {
   lightRed,
   stripColors
 } = require('kolorist')
+const utils = require('../utils')
+const { transformName, vueTemplate, mdTemplate, jsTemplate, firstUpper, combieName } = utils || {}
 
 const colors = [yellow, green, cyan, magenta, lightRed]
 
@@ -41,7 +43,10 @@ async function init () {
         initial: '',
         message: '组件已存在，请输入：'
       })
-      targetDir = name
+      targetDir = transformName(combieName(name))
+      if (targetDir !== name) {
+        continue
+      }
       root = path.join(path.resolve(cwd, './packages'), targetDir)
       if (!fs.existsSync(root)) {
         existing = true
@@ -82,41 +87,13 @@ async function init () {
     }
   })
 
-  /**
-   * 模板字符串拼接
-   */
-  const jsTemplate = `
-import Au${compieName(targetDir)} from './src/index.vue'
-
-Au${compieName(targetDir)}.install = function (Vue) {
-  Vue.component(Au${compieName(targetDir)}.name, Au${compieName(targetDir)})
-}
-
-export default Au${compieName(targetDir)}
-`
-  const vueTemplate = `
-<template>
-  <div>Au${compieName(targetDir)}组件</div>
-</template>
-<script>
-export default {
-  name: '${targetDir}'
-}
-</script>
-`
-  const mdTemplate = `
-# ${targetDir}
-
-## 基础用法
-基础用法
-`
   const compFile = fs.readFileSync(path.join(__dirname, '../../components.json'))
   const compJson = JSON.parse(compFile.toString())
   compJson[targetDir] = `./packages/${targetDir}/index.js`
   write(path.join(__dirname, '../../components.json'), JSON.stringify(compJson)) // 写入 components.json
-  write(path.join(__dirname, '../../packages', targetDir, 'index.js'), jsTemplate) // 写入 index.js
-  write(path.join(__dirname, '../../packages', targetDir, 'src/index.vue'), vueTemplate) // 写入 index.vue
-  write(path.join(__dirname, '../../examples/docs', `${targetDir}.md`), mdTemplate) // 写入 markdown 文件
+  write(path.join(__dirname, '../../packages', targetDir, 'index.js'), jsTemplate(targetDir)) // 写入 index.js
+  write(path.join(__dirname, '../../packages', targetDir, 'src/index.vue'), vueTemplate(targetDir)) // 写入 index.vue
+  write(path.join(__dirname, '../../examples/docs', `${targetDir}.md`), mdTemplate(targetDir)) // 写入 markdown 文件
   write(path.join(__dirname, '../../examples/nav.config.json'), JSON.stringify(jsonFile)) // 写入 nav.config.json
 
   console.log(`\n${chalk.bgMagenta(`${chalk.underline(targetDir)} 组件以及文档初始化成功)`)}\n`)
@@ -134,18 +111,6 @@ function write (src, content) {
     }
     return _t
   }, cwd)
-}
-// 首字母大写
-function firstUpper (name) {
-  if (!name) return ''
-  const c = name.charAt(0)
-  if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')) return c.toUpperCase() + name.slice(1)
-  return name
-}
-// line-1 => line1
-function compieName (name) {
-  const arr = name.split('-')
-  return arr.map((e) => firstUpper(e)).join('')
 }
 
 init().catch((e) => {

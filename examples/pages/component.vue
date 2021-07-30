@@ -19,6 +19,7 @@
   .page-component__nav {
     width: 240px;
     position: fixed;
+    z-index: 2;
     top: 0;
     bottom: 0;
     margin-top: 60px;
@@ -46,9 +47,20 @@
   }
 
   .page-component__content {
+    position: relative;
+    overflow: hidden;
     padding-left: 270px;
     padding-bottom: 100px;
     box-sizing: border-box;
+  }
+  .add-comp-btn {
+    position: absolute;
+    right: -100px;
+    top: 16px;
+    transition: right .3s;
+  }
+  .btn-move {
+    right: 32px;
   }
 
   .content {
@@ -138,12 +150,12 @@
 </style>
 <template>
   <el-scrollbar class="page-component__scroll" ref="componentScrollBar">
-    <el-button class="less-test" @click="() => getCompCategories()">点击</el-button>
     <div class="page-container page-component">
       <el-scrollbar class="page-component__nav">
         <side-nav :data="navsData" :base="`/component`"></side-nav>
       </el-scrollbar>
       <div class="page-component__content">
+        <el-button class="add-comp-btn" type="primary" :class="showBtn ? 'btn-move' : ''" @click="$refs.AddCompForm.show()">新增组件</el-button>
         <router-view class="content"></router-view>
       </div>
       <el-backtop
@@ -155,15 +167,18 @@
         <img class="back-top" :src="iconUrl" alt="返回顶部">
       </el-backtop>
     </div>
+    <AddCompForm ref="AddCompForm" />
   </el-scrollbar>
 </template>
 <script>
 import bus from '../bus'
 import navsData from '../nav.config.json'
 import throttle from 'throttle-debounce/throttle'
-import { getCompCategories } from '../api/index'
-
+import AddCompForm from './add-comp-form.vue'
 export default {
+  components: {
+    AddCompForm
+  },
   data () {
     return {
       navsData,
@@ -171,8 +186,8 @@ export default {
       showHeader: true,
       componentScrollBar: null,
       componentScrollBoxElement: null,
-      getCompCategories,
-      iconUrl: require('../assets/images/arrow-up.png').default
+      iconUrl: require('../assets/images/arrow-up.png').default,
+      showBtn: false
     }
   },
   watch: {
@@ -221,6 +236,12 @@ export default {
         bus.$emit('fadeNav')
       }
       this.scrollTop = scrollTop
+    },
+    keyDown(event) {
+      const { keyCode } = event || {}
+      if (keyCode === 17) {
+        this.showBtn = !this.showBtn
+      }
     }
   },
   computed: {
@@ -242,9 +263,11 @@ export default {
     this.renderAnchorHref()
     this.goAnchor()
     document.body.classList.add('is-component')
+    window.addEventListener('keydown', this.keyDown)
   },
   destroyed () {
     document.body.classList.remove('is-component')
+    window.removeEventListener('keydown', this.keyDown)
   },
   beforeDestroy () {
     this.componentScrollBox.removeEventListener('scroll', this.throttledScrollHandler)

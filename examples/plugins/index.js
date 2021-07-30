@@ -1,11 +1,18 @@
-import { Tooltip, Button, Scrollbar, Backtop, Icon } from 'element-ui'
+import { Tooltip, Button, Scrollbar, Backtop, Icon, Dialog, Form, FormItem, Input, Select, Option, Switch } from 'element-ui'
 
 const components = [
   Tooltip,
   Button,
   Scrollbar,
   Backtop,
-  Icon
+  Icon,
+  Dialog,
+  Form,
+  FormItem,
+  Input,
+  Select,
+  Option,
+  Switch
 ]
 export default {
   install(Vue) {

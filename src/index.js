@@ -29,7 +29,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 export default {
-  version: '1.0.6-beta.1',
+  version: '1.0.6-beta.3',
   install,
   Demo,
   Hello,

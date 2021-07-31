@@ -1,10 +1,6 @@
 const path = require('path')
-const webpack = require('webpack')
-const ProgressBarPlugin = require('progress-bar-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
-const CssMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin')
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const components = require('../components.json')
 const isFull = process.env.LIBMODE === 'full'
 const compEntry = {}
@@ -20,6 +16,7 @@ const webpackConfig = {
   output: {
     path: path.resolve(process.cwd(), 'lib'),
     publicPath: '',
+    libraryTarget: 'umd',
     filename: isFull ? 'main.min.js' : '[name]/[name].js'
   },
   resolve: {
@@ -40,15 +37,6 @@ const webpackConfig = {
   module: {
     rules: [
       {
-        enforce: 'pre',
-        test: /\.(vue|jsx?)$/,
-        exclude: /node_modules/,
-        loader: 'eslint-loader',
-        options: {
-          formatter: require('eslint-friendly-formatter')
-        }
-      },
-      {
         test: /\.(jsx?|babel|es6)$/,
         include: process.cwd(),
         exclude: [/node_modules/, /.husky/],
@@ -63,16 +51,7 @@ const webpackConfig = {
       },
       {
         test: /\.vue$/,
-        use: [
-          {
-            loader: 'vue-loader',
-            options: {
-              // compilerOptions: {
-              //   preserveWhitespace: false
-              // }
-            }
-          }
-        ]
+        use: ['vue-loader']
       },
       {
         test: /\.(css|scss)$/,
@@ -94,7 +73,7 @@ const webpackConfig = {
         test: /\.(svg|otf|ttf|woff2?|eot|gif|png|jpe?g)(\?\S*)?$/,
         loader: 'url-loader',
         options: {
-          limit: 10000,
+          limit: 8024,
           name: path.posix.join('static', '[name].[hash:7].[ext]')
         }
       }
@@ -102,30 +81,11 @@ const webpackConfig = {
   },
   plugins: [
     // new CleanWebpackPlugin(),
-    new ProgressBarPlugin(),
     new VueLoaderPlugin(),
-    new webpack.LoaderOptionsPlugin({
-      vue: {
-        compilerOptions: {
-          preserveWhitespace: false
-        }
-      }
-    }),
     new MiniCssExtractPlugin({
       filename: '[name]/[name].css'
     })
-  ],
-  optimization: {
-    minimizer: [
-      new UglifyJsPlugin({
-        cache: true,
-        parallel: true,
-        sourceMap: false
-      }),
-      new CssMinimizerWebpackPlugin()
-    ]
-  },
-  devtool: 'eval-cheap-source-map'
+  ]
 }
 
 module.exports = webpackConfig

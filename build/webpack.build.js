@@ -17,7 +17,7 @@ const webpackConfig = {
     path: path.resolve(process.cwd(), 'lib'),
     publicPath: '',
     libraryTarget: 'umd',
-    filename: isFull ? 'main.min.js' : '[name]/[name].js'
+    filename: isFull ? 'main.min.js' : '[name]/index.js'
   },
   resolve: {
     extensions: ['.js', '.vue', '.json'],
@@ -56,7 +56,7 @@ const webpackConfig = {
       {
         test: /\.(css|scss)$/,
         use: [
-          isFull ? 'style-loader' : MiniCssExtractPlugin.loader,
+          MiniCssExtractPlugin.loader,
           'css-loader',
           'sass-loader'
         ]
@@ -64,7 +64,7 @@ const webpackConfig = {
       {
         test: /\.(less)$/,
         use: [
-          isFull ? 'style-loader' : MiniCssExtractPlugin.loader,
+          MiniCssExtractPlugin.loader,
           'css-loader',
           'less-loader'
         ]
@@ -80,10 +80,9 @@ const webpackConfig = {
     ]
   },
   plugins: [
-    // new CleanWebpackPlugin(),
     new VueLoaderPlugin(),
     new MiniCssExtractPlugin({
-      filename: '[name]/[name].css'
+      filename: isFull ? 'main.css' : '[name]/[name].css'
     })
   ]
 }

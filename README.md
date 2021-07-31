@@ -4,6 +4,35 @@
 
 ## 使用
 
+### 按需加载
+
+借助`npm install babel-plugin-import -D`
+```js
+// .babelrc
+{
+  "plugins": [
+    [
+      "import",
+      {
+        libraryName: "au-ui",
+        style: () => false,
+        customName: (name) => {
+          function transformName(n) {
+            return n.split('').reduce((p, c, i) => {
+              if (i === 0) return c.toLocaleLowerCase()
+              else if (/^[A-Z]$/.test(c)) return p + '-' + c.toLocaleLowerCase()
+              else if (/^\d$/.test(c)) return /^\d$/.test(p.charAt(p.length - 1)) ? (p + c) : (p + '-' + c)
+              return p + c
+            }, '')
+          }
+          return `au-ui/packages/${transformName(name)}`
+        }
+      }
+    ]
+  ]
+}
+```
+
 ## 开发
 
 ### 新增组件

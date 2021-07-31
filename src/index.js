@@ -5,6 +5,11 @@ import Hello from '../packages/hello/index.js';
 import Roll from '../packages/roll/index.js';
 import Rank1 from '../packages/rank-1/index.js';
 
+export { default as Demo } from '../packages/demo/index.js';
+export { default as Hello } from '../packages/hello/index.js';
+export { default as Roll } from '../packages/roll/index.js';
+export { default as Rank1 } from '../packages/rank-1/index.js';
+
 const components = [
   Demo,
   Hello,
@@ -30,4 +35,4 @@ export default {
   Hello,
   Roll,
   Rank1
-};
+}

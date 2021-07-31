@@ -8,7 +8,7 @@
 
 借助`npm install babel-plugin-import -D`
 ```js
-// .babelrc
+// babel.config.js
 {
   "plugins": [
     [
@@ -27,7 +27,8 @@
           }
           return `au-ui/packages/${transformName(name)}`
         }
-      }
+      },
+      "au-ui-name" // 第三个参数是针对 babel-plugin-import 使用了多次，必须给它一个唯一的名称
     ]
   ]
 }

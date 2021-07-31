@@ -9,7 +9,7 @@
 借助`npm install babel-plugin-import -D`
 ```js
 // babel.config.js
-{
+module.exports = {
   "plugins": [
     [
       "import",

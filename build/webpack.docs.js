@@ -4,10 +4,9 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ProgressBarPlugin = require('progress-bar-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const CssMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
-
-// const config = require('./config');
 
 const isProd = process.env.NODE_ENV === 'production'
 
@@ -17,7 +16,7 @@ const webpackConfig = {
   output: {
     path: path.resolve(process.cwd(), 'dist'),
     publicPath: '',
-    filename: '[name].[fullhash:7].js',
+    filename: 'static/js/[name].[fullhash:7].js',
     chunkFilename: isProd ? '[name].[fullhash:7].js' : '[name].js'
   },
   resolve: {
@@ -62,16 +61,7 @@ const webpackConfig = {
       },
       {
         test: /\.vue$/,
-        use: [
-          {
-            loader: 'vue-loader',
-            options: {
-              compilerOptions: {
-                preserveWhitespace: false
-              }
-            }
-          }
-        ]
+        use: ['vue-loader']
       },
       {
         test: /\.(css|scss)$/,
@@ -106,16 +96,26 @@ const webpackConfig = {
         ]
       },
       {
-        test: /\.(svg|otf|ttf|woff2?|eot|gif|png|jpe?g)(\?\S*)?$/,
+        test: /\.(svg|gif|png|jpe?g)$/,
         loader: 'url-loader',
         options: {
-          limit: 10000,
-          name: path.posix.join('static', '[name].[hash:7].[ext]')
+          limit: 8024,
+          esModule: false,
+          name: path.posix.join('static', 'images', '[name].[hash:7].[ext]')
+        }
+      },
+      {
+        test: /\.(otf|ttf|woff2?|eot)$/,
+        loader: 'file-loader',
+        options: {
+          esModule: false,
+          name: path.posix.join('static', 'fonts', '[name].[hash:7].[ext]')
         }
       }
     ]
   },
   plugins: [
+    new CleanWebpackPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       template: './examples/index.tpl',
@@ -153,7 +153,7 @@ if (isProd) {
   // }
   webpackConfig.plugins.push(
     new MiniCssExtractPlugin({
-      filename: '[name].[fullhash:7].css'
+      filename: path.posix.join('static', 'css', '[name].[fullhash:7].css')
     })
   )
   webpackConfig.optimization.minimizer.push(
@@ -164,17 +164,16 @@ if (isProd) {
     }),
     new CssMinimizerWebpackPlugin()
   )
-  // https://webpack.js.org/configuration/optimization/#optimizationsplitchunks
   webpackConfig.optimization.splitChunks = {
     cacheGroups: {
       vendor: {
-        test: /\/src\//,
+        test: /\/packages\//,
         name: 'au-ui',
         chunks: 'all'
       }
     }
   }
-  webpackConfig.devtool = false
+  webpackConfig.devtool = 'eval-cheap-module-source-map'
 }
 
 module.exports = webpackConfig

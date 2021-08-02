@@ -1,5 +1,6 @@
 const path = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const CssMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const components = require('../components.json')
 const isFull = process.env.LIBMODE === 'full'
@@ -83,7 +84,8 @@ const webpackConfig = {
     new VueLoaderPlugin(),
     new MiniCssExtractPlugin({
       filename: isFull ? 'main.css' : '[name]/[name].css'
-    })
+    }),
+    new CssMinimizerWebpackPlugin()
   ]
 }
 

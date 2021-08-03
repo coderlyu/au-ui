@@ -12,6 +12,23 @@ export default Ts${combieName(name)}
 `
 }
 
+function packageJsonTemplate(name) {
+  return `
+{
+  "name": "${name}",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \\"Error: no test specified\\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
+`
+}
+
 // vue
 function vueTemplate(name) {
   return `
@@ -111,6 +128,7 @@ function transformName(n) {
 }
 
 module.exports = {
+  packageJsonTemplate,
   transformName,
   vueTemplate,
   mdTemplate,

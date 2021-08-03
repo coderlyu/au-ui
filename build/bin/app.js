@@ -2,7 +2,7 @@ const fs = require('fs')
 const path = require('path')
 const utils = require('../utils')
 const { execSync } = require('child_process')
-const { jsTemplate, vueTemplate, mdTemplate, combieName, getBody, transformName } = utils || {}
+const { jsTemplate, vueTemplate, mdTemplate, combieName, getBody, transformName, packageJsonTemplate } = utils || {}
 // 获取组件分类列表
 function getCompCategories (req, res) {
   try {
@@ -97,6 +97,7 @@ async function putComp (req, res) {
     write(path.join(__dirname, '../../components.json'), JSON.stringify(compJson)) // 写入.components.json
     write(path.join(__dirname, '../../packages', name, 'index.js'), jsTemplate(name)) // 写人 index.js
     write(path.join(__dirname, '../../packages', name, 'src/index.vue'), vueTemplate(name))// 写人index.vue
+    write(path.join(__dirname, '../../packages', name, 'package.json'), packageJsonTemplate(name))// 写人package.json
     write(path.join(__dirname, '../../examples/docs', `${name}.md`), mdTemplate(name))// 写人 markdown 文件
     // 顺序在写入 nav.config.json 之前【最好】
     execSync('npm run build:file', { cwd: process.cwd() })

@@ -170,9 +170,7 @@
 </style>
 
 <script type="text/babel">
-import Element from 'main/index.js'
 import { stripScript, stripStyle, stripTemplate } from '../util'
-const { version } = Element
 
 export default {
   data () {
@@ -192,42 +190,6 @@ export default {
   },
 
   methods: {
-    goCodepen () {
-      // since 2.6.2 use code rather than jsfiddle https://blog.codepen.io/documentation/api/prefill/
-      const { script, html, style } = this.codepen
-      const resourcesTpl = '<scr' + 'ipt src="//unpkg.com/vue/dist/vue.js"></scr' + 'ipt>' +
-        '\n<scr' + `ipt src="//unpkg.com/element-ui@${version}/lib/index.js"></scr` + 'ipt>'
-      let jsTpl = (script || '').replace(/export default/, 'var Main =').trim()
-      const htmlTpl = `${resourcesTpl}\n<div id="app">\n${html.trim()}\n</div>`
-      const cssTpl = `@import url("//unpkg.com/element-ui@${version}/lib/theme-chalk/index.css");\n${(style || '').trim()}\n`
-      jsTpl = jsTpl
-        ? jsTpl + '\nvar Ctor = Vue.extend(Main)\nnew Ctor().$mount(\'#app\')'
-        : 'new Vue().$mount(\'#app\')'
-      const data = {
-        js: jsTpl,
-        css: cssTpl,
-        html: htmlTpl
-      }
-      const form = document.getElementById('fiddle-form') || document.createElement('form')
-      while (form.firstChild) {
-        form.removeChild(form.firstChild)
-      }
-      form.method = 'POST'
-      form.action = 'https://codepen.io/pen/define/'
-      form.target = '_blank'
-      form.style.display = 'none'
-
-      const input = document.createElement('input')
-      input.setAttribute('name', 'data')
-      input.setAttribute('type', 'hidden')
-      input.setAttribute('value', JSON.stringify(data))
-
-      form.appendChild(input)
-      document.body.appendChild(form)
-
-      form.submit()
-    },
-
     scrollHandler () {
       const { top, bottom, left } = this.$refs.meta.getBoundingClientRect()
       this.fixedControl = bottom > document.documentElement.clientHeight &&

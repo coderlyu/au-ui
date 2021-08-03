@@ -71,7 +71,7 @@ const webpackConfig = {
         ]
       },
       {
-        test: /\.(svg|otf|ttf|woff2?|eot|gif|png|jpe?g)(\?\S*)?$/,
+        test: /\.(svg|otf|ttf|woff2?|eot|gif|png|jpe?g)$/,
         loader: 'url-loader',
         options: {
           limit: 8024,

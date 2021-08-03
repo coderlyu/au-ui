@@ -164,7 +164,7 @@
         :right="50"
         :bottom="40"
       >
-        <img class="back-top" :src="iconUrl" alt="返回顶部">
+        <img class="back-top" src="../assets/images/arrow-up.png" alt="返回顶部">
       </el-backtop>
     </div>
     <AddCompForm ref="AddCompForm" />
@@ -186,7 +186,6 @@ export default {
       showHeader: true,
       componentScrollBar: null,
       componentScrollBoxElement: null,
-      iconUrl: require('../assets/images/arrow-up.png').default,
       showBtn: false
     }
   },

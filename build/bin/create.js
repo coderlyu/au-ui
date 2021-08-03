@@ -93,7 +93,7 @@ async function init () {
   write(path.join(__dirname, '../../components.json'), JSON.stringify(compJson)) // 写入 components.json
   write(path.join(__dirname, '../../packages', targetDir, 'index.js'), jsTemplate(targetDir)) // 写入 index.js
   write(path.join(__dirname, '../../packages', targetDir, 'src/index.vue'), vueTemplate(targetDir)) // 写入 index.vue
-  write(path.join(__dirname, '../../packages', name, 'package.json'), packageJsonTemplate(targetDir))// 写人package.json
+  write(path.join(__dirname, '../../packages', targetDir, 'package.json'), packageJsonTemplate(targetDir))// 写人package.json
   write(path.join(__dirname, '../../examples/docs', `${targetDir}.md`), mdTemplate(targetDir)) // 写入 markdown 文件
   write(path.join(__dirname, '../../examples/nav.config.json'), JSON.stringify(jsonFile)) // 写入 nav.config.json
 

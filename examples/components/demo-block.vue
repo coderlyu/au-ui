@@ -186,8 +186,8 @@ export default {
       isExpanded: false,
       fixedControl: false,
       scrollParent: null,
-      arrowUp: require('../assets/images/arrow-up.png').default,
-      arrowDown: require('../assets/images/arrow-down.png').default
+      arrowUp: require('../assets/images/arrow-up.png'),
+      arrowDown: require('../assets/images/arrow-down.png')
     }
   },
 

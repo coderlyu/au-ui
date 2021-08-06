@@ -69,3 +69,17 @@ module.exports = {
 </template>
 ```
 :::
+
+
+## 代码提交规范
+
+- `feat`: 新功能、新特性
+- `fix`:  修复缺陷
+- `docs`: 文档改变
+- `style`: 代码风格改变
+- `refactor`: 除新特性和缺陷修复的其它代码变动
+- `perf`: 性能优化
+- `test`: 测试变更
+- `build`: 构建工具或外部依赖
+- `chore`: 其它文件变更
+- `revert`: 撤销上一次的 commit

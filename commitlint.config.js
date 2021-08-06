@@ -1,4 +1,4 @@
-const types = ['feat', 'fix', 'docs', 'style', 'refactor', 'perf', 'test', 'build', 'release', 'chore', 'revert']
+const types = ['feat', 'fix', 'docs', 'style', 'refactor', 'perf', 'test', 'build', 'chore', 'revert']
 
 module.exports = {
   extends: ['@commitlint/config-conventional'],

@@ -2,7 +2,7 @@ import Vue from 'vue'
 import entry from './app.vue'
 import VueRouter from 'vue-router'
 import ElementUI from './plugins'
-import Element from 'main/index.js'
+import AuUI from 'main/index.js'
 import hljs from 'highlight.js'
 import routes from './route.config'
 import demoBlock from './components/demo-block'
@@ -15,7 +15,7 @@ import './assets/styles/common.css'
 import 'element-ui/lib/theme-chalk/index.css'
 
 Vue.use(ElementUI)
-Vue.use(Element)
+Vue.use(AuUI)
 Vue.use(VueRouter)
 Vue.component('demo-block', demoBlock)
 Vue.component('main-footer', MainFooter)

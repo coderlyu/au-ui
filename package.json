@@ -1,6 +1,6 @@
 {
   "name": "au-ui",
-  "version": "1.1.1-alpha.0",
+  "version": "1.2.0",
   "description": "",
   "main": "./src/index.js",
   "scripts": {
@@ -17,8 +17,11 @@
     "lint:fix": "eslint src/**/*.js packages/**/*.vue packages/**/*.js examples/**/*.js examples/**/*.vue build/**/*.js --fix",
     "prepare": "husky install",
     "release": "standard-version",
-    "release:alpha": "standard-version --prerelease alpha",
-    "release:rc": "standard-version --prerelease rc"
+    "alpha": "standard-version --prerelease alpha",
+    "beta": "standard-version --prerelease beta",
+    "patch": "standard-version --prerelease patch",
+    "major": "standard-version --release-as beta",
+    "minor": "standard-version --release-as minor"
   },
   "author": {
     "name": "coderlyu",

@@ -2,8 +2,10 @@
   <div ref="bar-1" style="height: 100%;" />
 </template>
 <script>
-import * as echarts from 'echarts'
-
+import echarts from 'echarts/lib/echarts'
+import 'echarts/lib/chart/bar'
+import 'echarts/lib/component/legend'
+import 'echarts/lib/component/grid'
 export default {
   name: 'rank-1',
   props: {

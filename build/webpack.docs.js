@@ -25,7 +25,6 @@ const webpackConfig = {
       main: path.resolve(__dirname, '../src'),
       packages: path.resolve(__dirname, '../packages'),
       examples: path.resolve(__dirname, '../examples')
-      // process: 'process/browser'
     },
     modules: ['node_modules']
   },
